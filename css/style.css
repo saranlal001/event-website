@@ -311,9 +311,17 @@ a {
 }
 
 @keyframes shinyText {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%
+  }
+
+  50% {
+    background-position: 100% 50%
+  }
+
+  100% {
+    background-position: 0% 50%
+  }
 }
 
 .hero-content {
@@ -1015,8 +1023,91 @@ a {
   transform: scale(1.15);
 }
 
-.btn-rules {
+/* ── Card Action Buttons ── */
+
+/* Shared layout container */
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
   margin-top: 1rem;
+  width: 100%;
+  justify-content: center;
+  align-items: stretch;
+}
+
+/* Both buttons: equal size, equal height */
+.card-actions .btn-rules,
+.card-actions .btn-register {
+  flex: 1 1 0;
+  /* grow equally */
+  min-width: 0;
+  /* allow shrinking below content width */
+  height: 36px;
+  /* fixed identical height */
+  padding: 0 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  margin-top: 0;
+  font-family: var(--font-main);
+}
+
+/* View Rules button styling */
+.card-actions .btn-rules {
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--primary-color);
+}
+
+.card-actions .btn-rules:hover {
+  background: var(--primary-color);
+  color: #fff;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 10px rgba(245, 176, 65, 0.4);
+}
+
+/* Register Now button styling */
+.card-actions .btn-register {
+  background: linear-gradient(135deg, var(--primary-color), #a00);
+  color: #fff !important;
+  border: 1px solid transparent;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 4px 12px rgba(139, 0, 0, 0.4);
+}
+
+.card-actions .btn-register::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--secondary-color), #f39c12);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.card-actions .btn-register:hover::before {
+  opacity: 1;
+}
+
+.card-actions .btn-register:hover {
+  color: #fff !important;
+  box-shadow: 0 0 15px rgba(245, 176, 65, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Legacy standalone .btn-rules (outside .card-actions) */
+.btn-rules {
   padding: 0.5rem 1.2rem;
   background: transparent;
   color: var(--text-main);
@@ -1026,72 +1117,6 @@ a {
   font-weight: 500;
   cursor: pointer;
   transition: var(--transition);
-}
-
-
-.card-actions {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  width: 100%;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.card-actions .btn-rules,
-.btn-register {
-  margin-top: 0;
-  flex: 1;
-  padding: 0.4rem 0.5rem;
-  font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-register {
-  background: linear-gradient(135deg, var(--primary-color), #a00);
-  color: #fff !important;
-  border: none;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-  text-decoration: none;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
-}
-
-.btn-register::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, var(--secondary-color), #f39c12);
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 0.3s ease;
-}
-
-.btn-register:hover::before {
-  opacity: 1;
-}
-
-.btn-register:hover {
-  background: transparent;
-  color: #fff !important;
-  border-color: transparent;
-  box-shadow: 0 0 15px rgba(245, 176, 65, 0.6);
-  transform: translateY(-2px);
-}
-
-.btn-register:hover {
-  background: transparent;
-  color: var(--secondary-color) !important;
-  border-color: var(--secondary-color);
-  box-shadow: 0 0 10px rgba(245, 176, 65, 0.4);
 }
 
 .btn-rules:hover {
@@ -1486,13 +1511,28 @@ a {
     font-size: 1.6rem;
   }
 
+  /* Full-width only for hero / guideline standalone buttons */
   .btn-glow,
   .btn-guidelines,
-  .btn-rules,
   .btn-secondary {
     width: 100%;
     margin-bottom: 0.5rem;
     text-align: center;
+  }
+
+  /* Card-action buttons: keep equal side-by-side, enforce min height */
+  .card-actions {
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+  }
+
+  .card-actions .btn-rules,
+  .card-actions .btn-register {
+    flex: 1 1 0;
+    height: 34px;
+    font-size: 0.72rem;
+    padding: 0 0.4rem;
+    white-space: nowrap;
   }
 }
 
@@ -1965,13 +2005,20 @@ a {
 }
 
 @keyframes rotateGlow {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.ug-card > * {
+.ug-card>* {
   position: relative;
   z-index: 1;
 }
 
-.advanced-glow { display: none; }
+.advanced-glow {
+  display: none;
+}
