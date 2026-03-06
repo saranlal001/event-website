@@ -72,14 +72,19 @@ document.addEventListener('DOMContentLoaded', () => {
     /* --- Typing Effect --- */
     const typingText = document.getElementById('hero-typing-text');
     if (typingText) {
-        const textToType = "Mar Ephraem College warmly welcomes you to Gwani '26, a National Level Techno Management Fest celebrating excellence beyond boundaries.";
-        typingText.innerText = '';
+        const textToType = "Mar Ephraem College warmly welcomes you to <b>Gwani '26</b>, a <b>National Level Techno Management Fest</b> — celebrating excellence beyond boundaries.";
+        typingText.innerHTML = '';
         let i = 0;
         const speed = 25; // ms per char
 
         const typeWriter = () => {
             if (i < textToType.length) {
-                typingText.innerHTML += textToType.charAt(i);
+                if (textToType.charAt(i) === '<') {
+                    while (i < textToType.length && textToType.charAt(i) !== '>') {
+                        i++;
+                    }
+                }
+                typingText.innerHTML = textToType.substring(0, i + 1);
                 i++;
                 setTimeout(typeWriter, speed);
             } else {
