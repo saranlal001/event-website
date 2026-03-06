@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* --- Typing Effect --- */
     const typingText = document.getElementById('hero-typing-text');
     if (typingText) {
-        const textToType = "With immense pride, Mar Ephraem College of Engineering and Technology welcomes you to GWANI 2026. Rooted in values and academic brilliance, our intercollegiate fest is a grand platform celebrating excellence beyond boundaries.";
+        const textToType = "Mar Ephraem College warmly welcomes you to Gwani '26, a National Level Techno Management Fest celebrating excellence beyond boundaries.";
         typingText.innerText = '';
         let i = 0;
         const speed = 25; // ms per char
@@ -366,14 +366,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "Use of instruments or karaoke is not permitted.",
             "Judges’ decision will be final and binding."
         ],
-        "Mime": [
-            "Each team consists of 6-12 members.",
-            "Teams must perform a mime act within a time limit of 3-4 minutes.",
-            "The team can act on any theme.",
-            "The act can be based on a theme, story, or emotion.",
-            "Teams are not allowed to use any dialogue or vocal sounds.",
-            "Music and sound effects are allowed, submit the pen drive with music in MP3 format as one consolidated track. And handover the same at the time of registration itself."
-        ],
         "Face Painting": [
             "Team size: 2 members (Artist and Model).",
             "There is no restriction on the number of teams from each college.",
@@ -519,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Pencils and basic sketching materials are allowed.",
             "Judges’ decision will be final and binding."
         ],
-            "Best Manager": [
+        "Best Manager": [
             "Individual event.",
             "There is no restriction on the number of participants from each college.",
             "The detailed structure of the event will be announced on the day of the event.",
